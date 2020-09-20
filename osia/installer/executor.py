@@ -61,7 +61,7 @@ def install_cluster(cloud_provider,
     dns_prov = None
     if dns_settings is not None:
         dns_prov = DNSProvider.instance()[dns_settings['provider']](**dns_settings['conf'])
-        dns_prov.add_api_domain(inst.osp_fip)
+        dns_prov.add_api_domain(inst)
         dns_prov.marshall(cluster_name)
 
     inst.process_template()
@@ -78,7 +78,7 @@ def install_cluster(cloud_provider,
     inst.post_installation()
 
     if dns_settings is not None:
-        dns_prov.add_apps_domain(inst.apps_fip)
+        dns_prov.add_apps_domain(inst)
         dns_prov.marshall(cluster_name)
 
 
